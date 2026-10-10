@@ -1,0 +1,321 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Winter extras */
+  --color-frost: var(--frost);
+  --color-ember: var(--ember);
+  --color-ember-foreground: var(--ember-foreground);
+  --color-aurora-1: var(--aurora-1);
+  --color-aurora-2: var(--aurora-2);
+  --color-aurora-3: var(--aurora-3);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-marquee: marquee var(--marquee-duration, 60s) linear infinite;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+
+  @keyframes aurora {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(4%, -6%, 0) scale(1.12) rotate(8deg);
+    }
+    100% {
+      transform: translate3d(-5%, 4%, 0) scale(0.95) rotate(-6deg);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 0 transparent);
+    }
+    50% {
+      filter: drop-shadow(0 0 18px var(--glow));
+    }
+  }
+}
+
+/* Light — bright snow-white morning */
+:root {
+  --background: oklch(0.985 0.008 230);
+  --foreground: oklch(0.22 0.045 255);
+  --card: oklch(1 0 0 / 0.65);
+  --card-foreground: oklch(0.22 0.045 255);
+  --popover: oklch(0.99 0.006 230);
+  --popover-foreground: oklch(0.22 0.045 255);
+  --primary: oklch(0.5 0.15 245);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.95 0.018 230);
+  --secondary-foreground: oklch(0.28 0.05 250);
+  --muted: oklch(0.95 0.015 230);
+  --muted-foreground: oklch(0.46 0.035 250);
+  --accent: oklch(0.93 0.03 225);
+  --accent-foreground: oklch(0.28 0.06 250);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.88 0.025 230);
+  --input: oklch(0.88 0.025 230);
+  --ring: oklch(0.55 0.15 240);
+  --radius: 1rem;
+
+  --frost: oklch(0.93 0.035 220);
+  --ember: oklch(0.62 0.18 45);
+  --ember-foreground: oklch(0.99 0 0);
+  --aurora-1: oklch(0.82 0.1 210);
+  --aurora-2: oklch(0.8 0.1 280);
+  --aurora-3: oklch(0.86 0.09 175);
+  --glow: oklch(0.65 0.15 235 / 0.45);
+  --snow: oklch(0.72 0.08 235);
+  /* Gradient text stops, dark enough for 4.5:1 on snow white */
+  --ice-1: oklch(0.5 0.15 245);
+  --ice-2: oklch(0.47 0.17 285);
+  --ice-3: oklch(0.5 0.11 195);
+}
+
+/* Dark — polar night */
+.dark {
+  --background: oklch(0.15 0.03 260);
+  --foreground: oklch(0.96 0.01 230);
+  --card: oklch(0.22 0.035 258 / 0.55);
+  --card-foreground: oklch(0.96 0.01 230);
+  --popover: oklch(0.19 0.035 258);
+  --popover-foreground: oklch(0.96 0.01 230);
+  --primary: oklch(0.8 0.12 220);
+  --primary-foreground: oklch(0.16 0.035 258);
+  --secondary: oklch(0.24 0.035 258);
+  --secondary-foreground: oklch(0.94 0.01 230);
+  --muted: oklch(0.23 0.03 258);
+  --muted-foreground: oklch(0.74 0.03 240);
+  --accent: oklch(0.27 0.045 250);
+  --accent-foreground: oklch(0.95 0.01 230);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.85 0.05 230 / 0.14);
+  --input: oklch(0.85 0.05 230 / 0.18);
+  --ring: oklch(0.8 0.12 220);
+
+  --frost: oklch(0.3 0.05 235);
+  --ember: oklch(0.74 0.16 50);
+  --ember-foreground: oklch(0.18 0.03 258);
+  --aurora-1: oklch(0.62 0.15 170);
+  --aurora-2: oklch(0.52 0.18 290);
+  --aurora-3: oklch(0.58 0.13 220);
+  --glow: oklch(0.8 0.12 220 / 0.55);
+  --snow: oklch(0.97 0.01 230);
+  --ice-1: oklch(0.8 0.12 220);
+  --ice-2: oklch(0.72 0.15 290);
+  --ice-3: oklch(0.75 0.14 170);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-tight text-balance;
+  }
+  ::selection {
+    @apply bg-primary/25;
+  }
+}
+
+@layer components {
+  /* Frosted glass surface */
+  .frost {
+    @apply border border-white/40 bg-card shadow-[0_8px_32px_-12px_var(--glow)] backdrop-blur-md dark:border-white/10;
+  }
+
+  /* Gradient sweep on hover, like light across ice */
+  .ice-sweep {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ice-sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, oklch(1 0 0 / 0.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+  }
+  .ice-sweep:hover::after,
+  .ice-sweep:focus-visible::after {
+    transform: translateX(120%);
+  }
+
+  .text-ice {
+    background: linear-gradient(120deg, var(--ice-1), var(--ice-2) 55%, var(--ice-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Footer winter village */
+:root {
+  --scene-hill: oklch(0.91 0.03 228);
+  --scene-tree-far: oklch(0.74 0.05 215);
+  --scene-tree: oklch(0.43 0.075 200);
+  --scene-trunk: oklch(0.42 0.05 50);
+  --scene-wall: oklch(0.6 0.08 45);
+  --scene-roof: oklch(0.42 0.06 250);
+  --scene-door: oklch(0.38 0.05 40);
+  --scene-window: oklch(0.82 0.15 75);
+  --scene-snowcap: oklch(0.995 0.004 230);
+  --scene-ground: oklch(0.985 0.006 230);
+  --scene-ground-shade: oklch(0.94 0.02 230);
+  --scene-smoke: oklch(0.8 0.015 240);
+}
+.dark {
+  --scene-hill: oklch(0.24 0.04 255);
+  --scene-tree-far: oklch(0.3 0.045 240);
+  --scene-tree: oklch(0.34 0.06 205);
+  --scene-trunk: oklch(0.3 0.03 50);
+  --scene-wall: oklch(0.36 0.045 40);
+  --scene-roof: oklch(0.24 0.035 260);
+  --scene-door: oklch(0.26 0.03 40);
+  --scene-window: oklch(0.8 0.16 70);
+  --scene-snowcap: oklch(0.9 0.02 230);
+  --scene-ground: oklch(0.84 0.03 235);
+  --scene-ground-shade: oklch(0.76 0.04 240);
+  --scene-smoke: oklch(0.55 0.02 250);
+}
+
+.scene-window {
+  animation: scene-window 4s ease-in-out infinite;
+}
+.dark .scene-window {
+  filter: drop-shadow(0 0 6px var(--scene-window));
+}
+@keyframes scene-window {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.82;
+  }
+  55% {
+    opacity: 0.95;
+  }
+}
+
+.scene-smoke circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: scene-smoke 4.5s ease-out infinite;
+}
+.scene-smoke circle:nth-child(2) {
+  animation-delay: 1.5s;
+}
+.scene-smoke circle:nth-child(3) {
+  animation-delay: 3s;
+}
+@keyframes scene-smoke {
+  0% {
+    opacity: 0;
+    transform: translate(0, 12px) scale(0.6);
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, -18px) scale(1.4);
+  }
+}
+
+/* Smooth light ↔ dark switch: a soft crossfade of the whole page */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+/* Fallback for browsers without View Transitions */
+.theme-fade,
+.theme-fade *,
+.theme-fade *::before,
+.theme-fade *::after {
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease,
+    fill 0.5s ease,
+    box-shadow 0.5s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
