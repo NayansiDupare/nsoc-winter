@@ -93,11 +93,23 @@ export default function Snowfall() {
     });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     resize();
-    start();
+    // Start once the page has loaded and the browser is idle, so the snow never
+    // competes with first paint and hydration.
+    let idle = 0;
+    const begin = () => {
+      idle = window.requestIdleCallback
+        ? window.requestIdleCallback(start, { timeout: 2000 })
+        : window.setTimeout(start, 200);
+    };
+    if (document.readyState === "complete") begin();
+    else window.addEventListener("load", begin, { once: true });
     document.addEventListener("visibilitychange", onVisibility);
     reduce.addEventListener("change", onMotionChange);
 
     return () => {
+      window.removeEventListener("load", begin);
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
       stop();
       observer.disconnect();
       themeObserver.disconnect();

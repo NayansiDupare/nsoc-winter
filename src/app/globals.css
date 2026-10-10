@@ -45,7 +45,6 @@
 
   --animate-aurora: aurora 18s ease-in-out infinite alternate;
   --animate-marquee: marquee var(--marquee-duration, 60s) linear infinite;
-  --animate-breathe: breathe 4s ease-in-out infinite;
 
   @keyframes aurora {
     0% {
@@ -65,16 +64,6 @@
     }
     to {
       transform: translateX(-50%);
-    }
-  }
-
-  @keyframes breathe {
-    0%,
-    100% {
-      filter: drop-shadow(0 0 0 transparent);
-    }
-    50% {
-      filter: drop-shadow(0 0 18px var(--glow));
     }
   }
 }

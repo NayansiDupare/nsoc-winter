@@ -17,7 +17,7 @@ export function Stats() {
                 {s.label}
               </dt>
               <dd className="order-1 font-heading text-6xl font-bold tabular-nums md:text-7xl">
-                <CountUp value={s.value} suffix={s.suffix} className="text-ice animate-breathe" />
+                <CountUp value={s.value} suffix={s.suffix} className="text-ice drop-shadow-[0_0_14px_var(--glow)]" />
               </dd>
             </div>
           ))}

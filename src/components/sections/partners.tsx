@@ -25,7 +25,7 @@ function PartnerCard({ partner, hidden }: { partner: Partner; hidden?: boolean }
   );
 
   const className =
-    "frost group flex h-full w-72 items-center gap-4 rounded-2xl p-4 transition-colors duration-300 hover:border-primary/40";
+    "frost group flex h-full w-72 items-center gap-4 rounded-2xl p-4 backdrop-blur-none! transition-colors duration-300 hover:border-primary/40";
 
   // Partners without a link on the live site render as plain cards, not dead links.
   if (!partner.href) return <div className={className}>{body}</div>;
