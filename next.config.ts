@@ -35,6 +35,8 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Hide the Next.js dev tools badge ("N" circle) in development; it never ships to production.
+  devIndicators: false,
   // Dev only: let the dev server be opened from this machine's LAN address
   // (e.g. testing on a phone). Extra hosts can be added via DEV_ORIGINS="a,b".
   allowedDevOrigins: ["10.56.229.189", ...(process.env.DEV_ORIGINS?.split(",") ?? [])],
